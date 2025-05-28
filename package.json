@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "if [ -f .nvmrc ]; then nvm use; fi",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -45,4 +46,5 @@
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
   }
+  
 }
