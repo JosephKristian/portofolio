@@ -1,3 +1,7 @@
+[build]
+  command = "npm install --legacy-peer-deps && npm run build"
+  publish = "dist"
+
 [build.environment]
-  NODE_VERSION = "20"
-  NVM_DIR = "/opt/buildhome/.nvm"
+  NODE_VERSION = "20.12.2"
+  NPM_FLAGS = "--legacy-peer-deps"
