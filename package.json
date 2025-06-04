@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prebuild": "if [ -f .nvmrc ]; then nvm use; fi",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -26,8 +25,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.27.0",
@@ -46,5 +45,4 @@
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
   }
-  
 }
