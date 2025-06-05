@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     CodeBracketIcon,
     CommandLineIcon,
@@ -12,8 +12,6 @@ import {
 } from '@heroicons/react/24/outline';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import projects from './constant/projectData';
-import techStack from './constant/techStackData';
 import HeroSection from './components/HeroSections/HeroSections';
 import MetricsSection from './components/MetricsSections/MetricsSections';
 import CvSection from './components/CvSections/CvSections';
@@ -37,6 +35,7 @@ const HomePage = () => {
     const techSectionRef = useRef(null);
     const metricsSectionRef = useRef(null);
     const ctx = useRef();
+    const location = useLocation()
 
     const { scrollYProgress } = useScroll({ container: containerRef });
 
@@ -59,6 +58,18 @@ const HomePage = () => {
             projectCardRefs.current.push(el);
         }
     };
+
+    useEffect(() => {
+        if (location.hash === '#contact') {
+            // Tunggu render selesai
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact')
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' })
+                }
+            }, 100)
+        }
+    }, [location])
 
     useEffect(() => {
         ctx.current = gsap.context(() => {

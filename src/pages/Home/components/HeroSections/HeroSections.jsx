@@ -5,6 +5,8 @@ import {
     ArrowDownIcon,
     ArrowTopRightOnSquareIcon,
 } from '@heroicons/react/24/outline';
+import Profile from '../../../../assets/images/AYANGKUPP.png'
+import AbstractVisual from './AbstractVisual';
 
 const HeroSection = ({ addButtonToRefs }) => {
     // Track scroll for interactivity
@@ -35,9 +37,9 @@ const HeroSection = ({ addButtonToRefs }) => {
                     <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 animate-spin-slow blur-[20px] opacity-30 dark:opacity-20" />
                     <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center border-4 border-white dark:border-gray-800 shadow-xl overflow-hidden">
                         <img
-                            src="/your-profile.jpg"
+                            src={Profile}
                             alt="Profile"
-                            className="w-full h-full object-cover rounded-full"
+                            className="w-full h-full object-cover m-1 rounded-full"
                         />
                     </div>
                 </motion.div>
@@ -106,34 +108,9 @@ const HeroSection = ({ addButtonToRefs }) => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
             >
-                <div className="absolute top-0 right-0 w-full h-full">
-                    <div className="absolute top-20 right-20 w-40 h-40 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 animate-pulse-slow" />
-                    <div className="absolute top-40 right-60 w-24 h-24 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20 animate-pulse-slow animation-delay-500" />
-                    <div className="absolute bottom-20 right-40 w-32 h-32 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-400/20 animate-pulse-slow animation-delay-1000" />
 
-                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 gap-8 opacity-30">
-                        {Array.from({ length: 16 }).map((_, i) => (
-                            <div
-                                key={i}
-                                className="border border-gray-300 dark:border-gray-700 rounded-lg"
-                            />
-                        ))}
-                    </div>
+                <AbstractVisual />
 
-                    <div className="absolute top-32 left-12 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 transform rotate-6 w-48">
-                        <div className="text-xs font-mono text-gray-700 dark:text-gray-300">
-                            <div className="text-blue-600 dark:text-blue-400">function</div>
-                            <div className="text-purple-600 dark:text-purple-400">animateCard</div>
-                            <div className="text-gray-400">( ) {`{`}</div>
-                            <div className="ml-4">gsap.<span className="text-yellow-600">to</span>(element, {`{`}</div>
-                            <div className="ml-8">y: 0,</div>
-                            <div className="ml-8">opacity: 1,</div>
-                            <div className="ml-8">duration: 0.8</div>
-                            <div className="ml-4">{`}`})</div>
-                            <div>{`}`}</div>
-                        </div>
-                    </div>
-                </div>
             </motion.div>
 
             {/* Scroll down indicator */}

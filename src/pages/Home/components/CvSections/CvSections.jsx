@@ -1,7 +1,7 @@
 import { DocumentArrowDownIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 const CvSection = (
-    {addButtonToRefs}
+    { addButtonToRefs }
 ) => {
     return (
         <>
@@ -14,11 +14,12 @@ const CvSection = (
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                        href="#"
+                        href="/assets/cv/2024_11_07_CV_Salsabila-Maajid_V2.pdf"
+                        download="CV_Salsabila-Maajid_V2.pdf"
                         ref={addButtonToRefs}
                         className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:shadow-xl transition-all relative overflow-hidden group flex items-center justify-center gap-2"
                     >
-                        <span className="relative z-10">Download CV (PDF)</span>
+                        <span className="relative z-10">Download CV (PNG)</span>
                         <DocumentArrowDownIcon className="w-5 h-5 relative z-10" />
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                     </a>
