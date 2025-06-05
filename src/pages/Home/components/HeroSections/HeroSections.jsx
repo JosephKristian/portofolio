@@ -35,11 +35,16 @@ const HeroSection = ({ addButtonToRefs }) => {
                     aria-label="Profile photo"
                 >
                     <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 animate-spin-slow blur-[20px] opacity-30 dark:opacity-20" />
-                    <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center border-4 border-white dark:border-gray-800 shadow-xl overflow-hidden">
+                    <div className="w-full h-full rounded-full bg-gradient-to-br flex items-center justify-center border-4 border-white dark:border-gray-800 shadow-xl overflow-hidden" style={{
+                        background: `hsl(221, 45%, 45%)`
+                    }}>
                         <img
                             src={Profile}
                             alt="Profile"
-                            className="w-full h-full object-cover m-1 rounded-full"
+                            className="w-full h-full object-cover m-1 mr-[20px] rounded-full"
+                            style={{ width: '160%', height: '160%', background: '#8e72d7' }}
+
+
                         />
                     </div>
                 </motion.div>
