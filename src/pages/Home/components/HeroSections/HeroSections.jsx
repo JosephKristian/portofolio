@@ -120,7 +120,7 @@ const HeroSection = ({ addButtonToRefs }) => {
 
             {/* Scroll down indicator */}
             <motion.div
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+                className="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5 }}
