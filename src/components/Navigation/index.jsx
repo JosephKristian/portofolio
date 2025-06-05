@@ -1,8 +1,8 @@
-// components/Navigation/index.jsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { useDarkMode } from '../../context/DarkModeContext'
 import { motion, AnimatePresence } from 'framer-motion'
+import { gsap } from 'gsap'
 import Logo from './Logo'
 import CustomNavLink from './CustomNavLink'
 
@@ -10,12 +10,47 @@ export default function Navigation() {
   const { isDark, toggleDarkMode } = useDarkMode()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navRef = useRef(null)
+  const mobileMenuRef = useRef(null)
 
+  // GSAP scroll background animation
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 50
+      setIsScrolled(scrolled)
+      if (navRef.current) {
+        gsap.to(navRef.current, {
+          backgroundColor: scrolled ? (isDark ? 'rgba(31,41,55,0.7)' : 'rgba(255,255,255,0.7)') : 'transparent',
+          boxShadow: scrolled ? '0 4px 6px rgba(0,0,0,0.1)' : 'none',
+          duration: 0.4,
+          ease: 'power3.out',
+          backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)',
+        })
+      }
+    }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isDark])
+
+  // GSAP animation for mobile menu open/close
+  useEffect(() => {
+    if (isMenuOpen) {
+      gsap.fromTo(
+        mobileMenuRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out', pointerEvents: 'auto' }
+      )
+    } else if (mobileMenuRef.current) {
+      gsap.to(mobileMenuRef.current, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        ease: 'power3.in',
+        pointerEvents: 'none',
+      })
+    }
+  }, [isMenuOpen])
 
   const navLinks = [
     { to: '/', text: 'Home' },
@@ -31,13 +66,9 @@ export default function Navigation() {
   }
 
   return (
-    <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 120 }}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'shadow-md bg-white/70 dark:bg-gray-900/70' : 'bg-transparent'
-      } backdrop-blur-md`}
+    <nav
+      ref={navRef}
+      className="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent backdrop-blur-md"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         {/* Logo */}
@@ -121,42 +152,32 @@ export default function Navigation() {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-900/95 shadow-xl backdrop-blur-md"
-          >
-            <div className="flex flex-col gap-2 py-4 px-6">
-              {navLinks.map((link) => (
-                <motion.div key={link.to} whileHover={{ x: 5 }}>
-                  <CustomNavLink
-                    to={link.to}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="py-2 border-b border-gray-200 dark:border-gray-700 text-lg"
-                  >
-                    {link.text}
-                  </CustomNavLink>
-                </motion.div>
-              ))}
-              <motion.button
-                onClick={toggleDarkMode}
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 py-2 mt-2 text-gray-700 dark:text-gray-300"
+      <div
+        ref={mobileMenuRef}
+        className={`md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-900/95 shadow-xl backdrop-blur-md pointer-events-none opacity-0`}
+      >
+        <div className="flex flex-col gap-2 py-4 px-6">
+          {navLinks.map((link) => (
+            <motion.div key={link.to} whileHover={{ x: 5 }}>
+              <CustomNavLink
+                to={link.to}
+                onClick={() => setIsMenuOpen(false)}
+                className="py-2 border-b border-gray-200 dark:border-gray-700 text-lg"
               >
-                {isDark ? 'Light Mode' : 'Dark Mode'}
-                {isDark ? (
-                  <SunIcon className="w-5 h-5 text-yellow-400" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+                {link.text}
+              </CustomNavLink>
+            </motion.div>
+          ))}
+          <motion.button
+            onClick={toggleDarkMode}
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-2 py-2 mt-2 text-gray-700 dark:text-gray-300"
+          >
+            {isDark ? 'Light Mode' : 'Dark Mode'}
+            {isDark ? <SunIcon className="w-5 h-5 text-yellow-400" /> : <MoonIcon className="w-5 h-5" />}
+          </motion.button>
+        </div>
+      </div>
+    </nav>
   )
 }

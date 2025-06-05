@@ -14,7 +14,7 @@ export default function HeroSection() {
           className="text-5xl md:text-7xl font-bold mb-6 dark:text-white"
           animate={{ textShadow: '0 5px 15px rgba(0,0,0,0.2)' }}
         >
-          Joseph Kristian
+          Salsabila Maajid
           <motion.span 
             className="block text-4xl md:text-6xl font-normal mt-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             animate={{

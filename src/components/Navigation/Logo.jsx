@@ -11,7 +11,7 @@ export default function Logo({ isDark }) {
         className="w-8 h-8 rounded-full border-2 border-blue-500"
       />
       <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-300">
-        JOSEPH KRISTIAN TANUDJAJA
+        SALSABILA MAAJID
       </span>
     </div>
   )

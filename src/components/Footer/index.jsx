@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-600 dark:text-gray-400">
-          <p>© {currentYear} Joseph Kristian Tanudjaja. All rights reserved.</p>
+          <p>© {currentYear} Salsabila Maajid. All rights reserved.</p>
           <p className="mt-2">Built with React, Tailwind CSS, and ❤️</p>
         </div>
       </div>
