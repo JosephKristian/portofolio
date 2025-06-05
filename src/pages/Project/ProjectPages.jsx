@@ -113,15 +113,6 @@ export default function HomePage() {
           </li>
         </ul>
       </section>
-
-      <div className="mt-12 text-center">
-        <a
-          href="#contact"
-          className="bg-blue-600 text-white py-3 px-6 rounded-lg text-lg hover:bg-blue-700 dark:bg-yellow-500 dark:text-gray-900 dark:hover:bg-yellow-400 transition"
-        >
-          Konsultasi Gratis Sekarang →
-        </a>
-      </div>
     </div>
   );
 }
